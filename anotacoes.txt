@@ -1,0 +1,37 @@
+na linha 40 do codigo feat_batch do matlab é definido o tamanho do batch batch_size = 10;
+
+DESCOBERTA IMPORTANTE: o maluco do artigo meio que define o treinamento e teste na função 
+prepare_batch do matlab.
+
+
+O QUE PRECISAMOS FAZER ATÉ TERÇA:
+	- Já temos o modelo treinado(para imagens 224x224x3x10) por meio de uma interface do matlab,
+	que o próprio autor do artigo passa;
+	- Quando fomos testar para uma imagem qualquer, uma nossa, deu erro, falando que as dimensões não
+	estavam de acordo, que era um erro esperado;
+	- A dúvida que fica é: para as imagens de satélite, vamos ter que adequar as nossas imagens para o
+	 modelo treinado pelo autor, ou vamos ter que modificar alguma coisa do código/estrutura das camadas
+	 (.prototxt) do autor para treinar e testar nossas imagens?
+
+	 A ideia agora, é estudar os códigos matlab do autor, e entender o que eles fazem. (principalmente
+	 os códigos prepare_batch e feat_beatch).
+
+
+A função feat_batch estabelece a interface do caffe para o modelo a ser treinado/testado.
+
+A função prepare_batch recebe uma lista de imagens e prepara elas para a CNN criada pelo autor, ou seja, interpola para 256x256
+e depois da um crop pra 224x224.
+
+
+
+	TODO LIST
+		- Codigo que faz a filtragem das imagens;
+		- Adaptar a interface do maluco do deepbit para as imagens de satelite (Codigo generalizado para testar para uma imagem qualquer);
+		- Estudar algum jeito de fazer a classificacao. Nao necessariamente vai ser o SVM;
+		- 
+
+	Procedimentos(Algoritmo)
+		1. Denoise das imagens;
+		2. Utilizar todas as nossas imagens no deepbit, e gerar os descritores binarios;
+		3. Classificacao(SVM, ou algum outro tipo);
+		4. Comparar resultados com o artigo do satelite;
