@@ -35,3 +35,26 @@ e depois da um crop pra 224x224.
 		2. Utilizar todas as nossas imagens no deepbit, e gerar os descritores binarios;
 		3. Classificacao(SVM, ou algum outro tipo);
 		4. Comparar resultados com o artigo do satelite;
+
+
+
+
+		Dibio falou que a principio, nao vai precisar representar os numeros binarios em algum numero representativo. O proprio classificador
+		svm do matlab ja se vira.
+
+		Sobre as minhas duvidas sobre as medias, dibio sugeriu para calcular tanto a media individual, quanto a media de todas as imagens.
+
+
+------------------------------------------------------------
+
+
+Serao 7 classes, sendo elas:
+	- Hymenoptera; DONE
+	- Coleoptera; DONE
+	- Hemiptera; DONE
+	- Lepidoptera; DONE
+	- Diptera;
+	- Orthoptera; DONE
+	- Isoptera; DONE
+
+	Com 700 imagens 
