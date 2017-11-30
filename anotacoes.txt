@@ -57,4 +57,7 @@ Serao 7 classes, sendo elas:
 	- Orthoptera; DONE
 	- Isoptera; DONE
 
-	Com 700 imagens 
+	Com 700 imagens cada
+
+Para treinamento e teste, sera usado a proporcao 80:20, logo, 560 de cada classe para treinamento e 140 para teste. 3920 imagens para treinamento e
+980 para teste.
