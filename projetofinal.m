@@ -45,22 +45,30 @@ if(firstTime == 1)
     % necessarias
 
     resultDeepBit = zeros(numImagens, 32);
+    
+    IMAGE_DIM = 256;
+    CROPPED_DIM = 224;
 
     % Se for a primeira vez que esta rodando, faz todo o procedimento, se nao for,
     % ja carrega o objeto mat
     % Para cada imagem, vai rodar o modelo deepbit e vai adicinar o resultado
     % em um vetor coluna, de modo que vai ficar 4900x32
+   
+    indices = [0 IMAGE_DIM-CROPPED_DIM] + 1;
+    center = floor(indices(2) / 2)+1;
     for i = 1:numImagens
         im = imread(listaImagens{i});
-        im = imresize(im, [224, 224]);
+        im = imresize(im, [256, 256], 'bilinear');
+        im = permute(im(center:center+CROPPED_DIM-1,...
+        center:center+CROPPED_DIM-1,:),[2 1 3]);
         resultModel = net.forward({im});
-        resultDeepBit(i, :) = resultModel{1, 1};
+        resultDeepBitCrop(i, :) = resultModel{1, 1};
     end
-    feat_result_file = sprintf('%s/resultDeepBit.mat', '.');
+    feat_result_file = sprintf('%s/resultDeepBitCrop.mat', '.');
     save(feat_result_file);
 
 else
-    load('./resultDeepBit.mat');
+    load('./resultDeepBitCrop.mat');
 end
 
 % Calcula a media de cada coluna
