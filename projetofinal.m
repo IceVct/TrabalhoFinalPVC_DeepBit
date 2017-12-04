@@ -16,16 +16,16 @@ clear;
 addpath(genpath(pwd));
 
 % variaveis do caffe
-addpath('/home/victor/UnB/Semestre8/PVC/Projetos/ProjetoFinal/cvpr16-deepbit/matlab');
+addpath('../cvpr16-deepbit/matlab');
 % Mude firsttime para 1, caso seja a primeira vez que esteja rodando o
 % codigo
 firstTime = 0;
 
 if(firstTime == 1)
     % modelo deepbit
-    model_file = '/home/victor/UnB/Semestre8/PVC/Projetos/ProjetoFinal/cvpr16-deepbit/models/deepbit/DeepBit32_final_iter_1.caffemodel';
+    model_file = '../cvpr16-deepbit/models/deepbit/DeepBit32_final_iter_1.caffemodel';
     % definicao do modelo
-    model_def_file = '/home/victor/UnB/Semestre8/PVC/Projetos/ProjetoFinal/cvpr16-deepbit/models/deepbit/deploy32.prototxt';
+    model_def_file = '../cvpr16-deepbit/models/deepbit/deploy32.prototxt';
 
     caffe.set_mode_gpu();
     caffe.set_device(0);
@@ -34,7 +34,7 @@ if(firstTime == 1)
 
     mediaBin = 0; % media que vai ser usada para a binarizacao dos atributos extraidos pelo deepbit
 
-    todasImagens = '/home/victor/UnB/Semestre8/PVC/Projetos/ProjetoFinal/Imagens/todasimagens.txt';
+    todasImagens = './todasimagens.txt';
     listaImagens = read_cell(todasImagens);
 
     %% Extracao dos descritores binarios para todas as imagens e calculo da media mediaBin
