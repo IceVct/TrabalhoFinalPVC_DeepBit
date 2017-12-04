@@ -72,7 +72,7 @@ else
 end
 
 % Calcula a media de cada coluna
-mediaCol = mean(resultDeepBit);
+mediaCol = mean(resultDeepBitCrop);
 % Calcula o resultado da media de cada coluna, ou seja, calcula agora a
 % media geral
 mediaBin = mean(mediaCol);
@@ -80,7 +80,7 @@ mediaBin = mean(mediaCol);
 
 % Avalia os features originais de cada img, se for maior que a media geral
 % vira 1, senao 0
-binarioImagens = (resultDeepBit > mediaBin);
+binarioImagens = (resultDeepBitCrop > mediaBin);
 binarioImagens = double(binarioImagens); % converte de logical para double
 
 %% Treinamento da SVM sem cross validation
@@ -90,13 +90,13 @@ classes = read_cell('./classes.txt');
 
 % Usando o resultado ao avaliar todas as imagens no modelo DeepBit
 % Ao inves de usar os descritores binarios 
-SVMClassifier = fitcecoc(resultDeepBit, classes);
+SVMClassifier = fitcecoc(resultDeepBitCrop, classes);
 
 %% Treinamento da SVM com cross validation 
 
 rng(1)
 t = templateSVM('Standardize', 1);
-SVMClassifierCrossVal = fitcecoc(resultDeepBit,classes,'Learners',t,...
+SVMClassifierCrossVal = fitcecoc(resultDeepBitCrop,classes,'Learners',t,...
 'ClassNames',{'Coleoptera','Diptera','Hemiptera', 'Hymenoptera', 'Isoptera', 'Lepidoptera', 'Orthoptera'});
 CVClassifier = crossval(SVMClassifierCrossVal);
 
@@ -126,7 +126,7 @@ resultCVBin = kfoldPredict(CVClassifierBin);
 % Passos para a criacao da matriz de confusao
 isLabels = unique(classes);
 nLabels = numel(isLabels);
-[n,p] = size(resultDeepBit);
+[n,p] = size(resultDeepBitCrop);
 
 [~,grpLabel] = ismember(label,isLabels); 
 labelMat = zeros(nLabels,n); 
